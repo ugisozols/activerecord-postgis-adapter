@@ -1,5 +1,4 @@
 language: ruby
-sudo: true
 rvm:
   - 2.6
   - 2.5
@@ -25,8 +24,6 @@ env:
     - PGHOST=""
     - PGPORT=5432
 before_script:
-  - sudo cp /etc/postgresql/{9.6,10}/main/pg_hba.conf
-  - sudo /etc/init.d/postgresql restart
   - psql -U postgres -c "create database postgis_adapter_test"
   - psql -U postgres -d postgis_adapter_test -c "create extension postgis"
 script: bundle exec rake test
